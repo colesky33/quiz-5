@@ -1,3 +1,8 @@
+/*-------------------------
+Author: Colin Olesky
+Date: Feb 17, 2022
+Quiz #5
+--------------------------*/
 package com.company;
 
 import java.util.ArrayList;
@@ -6,7 +11,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        //making the web request to the API
+        //creating a CovidRequest object so we can make the API request
         CovidRequest request = new CovidRequest();
         //obtaining the covid data for all states & provinces within USA
         CovidDataStorage today = request.makeRequest();

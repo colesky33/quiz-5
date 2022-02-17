@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public class CovidRequest
 {
     public static final String covidURL = "https://covid2019-api.herokuapp.com/v2/current/US";
-    private URL url;
-    private String str, line, state;
+    public URL url;
+    public String str, line, state;
     public String date;
-    private int death, confirmed;
+    public int death, confirmed;
 
 //------------------Class constructor-----------------------------------------------------
     public CovidRequest()
