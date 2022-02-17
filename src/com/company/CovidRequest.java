@@ -19,14 +19,11 @@ public class CovidRequest
     private String str, line, state;
     public String date;
     private int death, confirmed;
-    private ArrayList<String> states = new ArrayList<String>();
-    private ArrayList<Integer> deaths = new ArrayList<Integer>();
-    private ArrayList<Integer> confirmeds = new ArrayList<Integer>();
+
 //------------------Class constructor-----------------------------------------------------
-//creates an object holding three ArrayLists, one for all states/provinces, one for all deaths, one for all confirmed cases
     public CovidRequest()
     {
-        //setup of the CovidRequest object, contains all data on all states and provinces
+        //setup of the CovidRequest object
         url = null;
         line = null;
         state = "";
@@ -34,8 +31,14 @@ public class CovidRequest
         str = "";
         confirmed = 0;
         death = 0;
+    }
+
+    public CovidDataStorage makeRequest()
+    {
+        //making a CovidDataStorage object to be returned, this will hold all of the parsed data
+        CovidDataStorage today = new CovidDataStorage();
         //making the API request
-        try 
+        try
         {
             url = new URL("https://covid2019-api.herokuapp.com/v2/current/US");
             URLConnection myUrlConnection = url.openConnection();
@@ -50,15 +53,11 @@ public class CovidRequest
             while ((line = in.readLine()) != null)
             {
                 str += line;
-                //System.out.println(line);
             }
 
 //--------------------PARSING------------------------------------------
             //first getting a JSONobject for the entire returned JSON file saved in "str"
             JSONObject rtrn = new JSONObject(str);
-
-            //testing to see if all the data correctly made it into the str String
-            //System.out.println(str);
 
             //obtaining the data JSON array
             JSONArray data = rtrn.getJSONArray("data");
@@ -73,20 +72,17 @@ public class CovidRequest
             {
                 JSONObject element = data.getJSONObject(i);
                 state = element.getString("Province_State");
-                //System.out.println("state/province:   " + state);
-                states.add(state);
+                today.states.add(state);
                 confirmed = element.getInt("Confirmed");
-                //System.out.println("confirmed cases:  " + confirmed);
-                confirmeds.add(confirmed);
+                today.confirmeds.add(confirmed);
                 death = element.getInt("Deaths");
-                //System.out.println("confirmed deaths: " + death);
-                deaths.add(death);
-                //System.out.println("");
+                today.deaths.add(death);
+                System.out.println("");
             }
             date = rtrn.getString("dt");
-            //System.out.println("date: " + date);
+            today.date = date;
         }
-        catch (MalformedURLException e) 
+        catch (MalformedURLException e)
         {
             e.printStackTrace();
         } catch (IOException e) {
@@ -94,36 +90,6 @@ public class CovidRequest
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-//--------------------------------DATA transfer to data storage class
-    //copy state information to the data storage class
-    public ArrayList<String> getStateInfo()
-    {
-        ArrayList<String> sts = new ArrayList<String>();
-        for (int i = 0; i < states.size(); i++)
-        {
-            sts.add(states.get(i));
-        }
-        return(sts);
-    }
-    //copy death information to the data storage class
-    public ArrayList<Integer> getDeathInfo()
-    {
-        ArrayList<Integer> dth = new ArrayList<Integer>();
-        for (int i = 0; i < deaths.size(); i++)
-        {
-            dth.add(deaths.get(i));
-        }
-        return(dth);
-    }
-    //copy confirmed case information to the data storage class
-    public ArrayList<Integer> getConfirmedInfo()
-    {
-        ArrayList<Integer> conf = new ArrayList<Integer>();
-        for (int i = 0; i < confirmeds.size(); i++)
-        {
-            conf.add(confirmeds.get(i));
-        }
-        return(conf);
+        return today;
     }
 }
