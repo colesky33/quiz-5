@@ -20,7 +20,7 @@ public class CovidRequest
     public String date;
     public int death, confirmed;
 
-//------------------Class constructor-----------------------------------------------------
+    //------------------Class constructor-----------------------------------------------------
     public CovidRequest()
     {
         //setup of the CovidRequest object
@@ -90,6 +90,6 @@ public class CovidRequest
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return today;
+        return(today);
     }
 }

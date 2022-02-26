@@ -5,6 +5,7 @@ Quiz #5
 --------------------------*/
 package com.company;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -72,5 +73,10 @@ public class Main {
 
         //Date printing
         System.out.println("Date: " + today.date);
+
+        //simple UI
+        SimpleUI mySimpleUI = new SimpleUI();
+        SwingUtilities.invokeLater(mySimpleUI);
+
     }
 }

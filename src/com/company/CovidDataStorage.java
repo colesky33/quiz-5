@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.swing.*;
 
 //-------------------Data storage class creation--------------------
 //used for holding all the data from the API request & creating custom objects
@@ -30,12 +31,12 @@ public class CovidDataStorage
         {
             for (int j = 0; j < this.states.size(); j++)
             {
-             if (Objects.equals(sts.get(i), this.states.get(j)))
-             {
-                 returnObject.states.add(this.states.get(j));
-                 returnObject.deaths.add(this.deaths.get(j));
-                 returnObject.confirmeds.add(this.confirmeds.get(j));
-             }
+                if (Objects.equals(sts.get(i), this.states.get(j)))
+                {
+                    returnObject.states.add(this.states.get(j));
+                    returnObject.deaths.add(this.deaths.get(j));
+                    returnObject.confirmeds.add(this.confirmeds.get(j));
+                }
             }
         }
         return(returnObject);
