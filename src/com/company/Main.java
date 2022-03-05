@@ -1,10 +1,9 @@
 /*-------------------------
 Author: Colin Olesky
-Date: Feb 17, 2022
-Quiz #5
+Date: March 5, 2022
+Quiz #6 (Using quiz 5 framework)
 --------------------------*/
 package com.company;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -12,6 +11,12 @@ public class Main {
 
     public static void main(String[] args)
     {
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//                              QUIZ 5: API PARSING
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+
         //creating a CovidRequest object so we can make the API request
         CovidRequest request = new CovidRequest();
         //obtaining the covid data for all states & provinces within USA
@@ -74,9 +79,14 @@ public class Main {
         //Date printing
         System.out.println("Date: " + today.date);
 
-        //simple UI
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//                              QUIZ 6: UI APPLICATION WITH QUIZ 5 PARSED API
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+
+        //simple UI creation
         SimpleUI mySimpleUI = new SimpleUI();
         SwingUtilities.invokeLater(mySimpleUI);
-
     }
 }
